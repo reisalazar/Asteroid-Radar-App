@@ -17,23 +17,26 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val database = AsteroidDatabaseRoom.getDatabaseInstance(app)
     private val repository = AsteroidRepository(database)
 
-    val itemDetail = MutableLiveData<Asteroid?>()
     val asteroids = repository.asteroids
 
     private val _pictureOfTheDay = MutableLiveData<PictureOfDay>()
     val pictureOfTheDay: LiveData<PictureOfDay>
         get() = _pictureOfTheDay
 
+    private val _navigateToItemDetail = MutableLiveData<Asteroid>()
+    val navigateToItemDetail
+        get() = _navigateToItemDetail
+
     init {
         refreshAsteroids()
         getPictureOfTheDay()
 
     }
-    fun showDetail(item: Asteroid) {
-        itemDetail.value = item
+    fun navigateToDetail(item: Asteroid) {
+        navigateToItemDetail.value = item
     }
-    fun detailShown() {
-        itemDetail.value = null
+    fun detailNavigated() {
+        navigateToItemDetail.value = null
     }
 
     private fun getPictureOfTheDay() = viewModelScope.launch(Dispatchers.Main) {

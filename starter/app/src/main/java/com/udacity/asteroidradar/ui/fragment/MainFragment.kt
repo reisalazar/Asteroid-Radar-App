@@ -27,17 +27,17 @@ class MainFragment : Fragment() {
 
 
         val adapter = AsteroidListAdapter(AsteroidListAdapter.AsteroidItemOnClickListener {
-            viewModel.showDetail(it)
+            viewModel.navigateToDetail(it)
         })
         binding.asteroidRecycler.adapter = adapter
         viewModel.asteroids.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
 
-        viewModel.itemDetail.observe(viewLifecycleOwner) {
+        viewModel.navigateToItemDetail.observe(viewLifecycleOwner) {
             it?.let {
                 findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
-                viewModel.detailShown()
+                viewModel.detailNavigated()
             }
         }
 
