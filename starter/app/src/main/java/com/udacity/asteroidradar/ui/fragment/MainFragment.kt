@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.ui.adapter.AsteroidListAdapter
-import com.udacity.asteroidradar.ui.viewmodel.MainViewModel
+import com.udacity.asteroidradar.MainViewModel
 
 class MainFragment : Fragment() {
 

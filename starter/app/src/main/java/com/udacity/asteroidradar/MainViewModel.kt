@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.ui.viewmodel
+package com.udacity.asteroidradar
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -36,7 +36,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         itemDetail.value = null
     }
 
-    private fun getPictureOfTheDay() = viewModelScope.launch(Dispatchers.IO) {
+    private fun getPictureOfTheDay() = viewModelScope.launch(Dispatchers.Main) {
         _pictureOfTheDay.value = repository.getPictureOfDay()
     }
 
