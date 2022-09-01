@@ -9,14 +9,14 @@
             type="com.udacity.asteroidradar.database.Asteroid" />
 
         <variable
-            name="clickListener"
-            type="com.udacity.asteroidradar.main.AsteroidListener" />
+            name="onClickListener"
+            type="com.udacity.asteroidradar.ui.adapter.AsteroidListAdapter.AsteroidItemOnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onClick(asteroid)}">
+        android:onClick="@{() -> onClickListener.onClick(asteroid)}">
 
         <TextView
             android:id="@+id/name"
