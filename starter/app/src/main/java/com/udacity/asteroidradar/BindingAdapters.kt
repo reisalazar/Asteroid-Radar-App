@@ -3,8 +3,11 @@ package com.udacity.asteroidradar
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.udacity.asteroidradar.database.Asteroid
 import com.udacity.asteroidradar.database.PictureOfDay
+import com.udacity.asteroidradar.ui.adapter.AsteroidListAdapter
 
 
 @BindingAdapter("pictureOfTheDay")
@@ -65,4 +68,11 @@ fun bindTextViewToKmUnit(textView: TextView, number: Double) {
 fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
+}
+@BindingAdapter("reryclerView")
+fun RecyclerView.displayRecyclerViewData(data: List<Asteroid>?) {
+
+    val adapter = this.adapter as AsteroidListAdapter
+    adapter.submitList(data)
+
 }
