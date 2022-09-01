@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -40,11 +41,20 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     private fun getPictureOfTheDay() = viewModelScope.launch(Dispatchers.Main) {
-        _pictureOfTheDay.value = repository.getPictureOfDay()
+        try {
+            _pictureOfTheDay.value = repository.getPictureOfDay()
+        }catch (exception: Exception) {
+            Log.e("PictureOfTheDayError", exception.stackTraceToString())
+        }
+
     }
 
     private fun refreshAsteroids() = viewModelScope.launch(Dispatchers.IO) {
-        repository.refreshAsteroids()
+       try {
+           repository.refreshAsteroids()
+       }catch (exception : Exception) {
+           Log.e("RefreshAsteroidsError", exception.stackTraceToString())
+       }
     }
 
 }
